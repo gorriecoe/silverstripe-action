@@ -1,0 +1,25 @@
+{
+  "name": "gorriecoe/silverstripe-action",
+  "description": "Adds basic call to action modals.",
+  "type": "silverstripe-vendormodule",
+  "license": "BSD-3-Clause",
+  "authors": [
+    {
+      "name": "Gorrie Coe",
+      "email": "gorriecoe@gmail.com"
+    }
+  ],
+  "keywords": [
+    "silverstripe",
+    "modular"
+  ],
+  "homepage": "http://github.com/gorriecoe/silverstripe-action",
+  "require":
+  {
+    "silverstripe/framework": "^4.0",
+    "gorriecoe/silverstripe-links": "^1.0"
+  },
+  "extra": {
+    "installer-name": "action"
+  }
+}
