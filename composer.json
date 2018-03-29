@@ -17,7 +17,7 @@
   "require":
   {
     "silverstripe/framework": "^4.0",
-    "gorriecoe/silverstripe-links": "^1.0"
+    "gorriecoe/silverstripe-link": "^1.0"
   },
   "extra": {
     "installer-name": "action"
