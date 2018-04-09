@@ -1,6 +1,6 @@
 <?php
 
-namespace gorriecoe\Preview\Models;
+namespace gorriecoe\Action\Models;
 
 use gorriecoe\Link\Models\Link;
 use gorriecoe\Preview\View\Preview;
