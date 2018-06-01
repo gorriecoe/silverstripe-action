@@ -114,42 +114,38 @@ class Action extends Link
 
     public function getPreview()
     {
-        if ($this->preview) {
-            return $this->preview;
+        $preview = $this->preview;
+        if ($preview) {
+            return $preview;
         }
         $type = $this->Type;
         if ($this->getRelationType($type) == 'has_one' && $component = $this->getComponent($type)) {
             if ($component->exists() && $component->hasMethod('getPreview')) {
-                $this->preview = $component->Preview;
-                $this->preview->setOwner($this);
+                $preview = $component->Preview;
+                $preview->Owner = $this;
             } else {
-                $this->preview = Preview::create($this);
+                $preview = Preview::create($this);
             }
         } else {
-            $this->preview = Preview::create($this);
+            $preview = Preview::create($this);
         }
 
-        $this->preview
-            ->setImage('ActionImage')
-            ->setTitle('ActionTitle')
-            ->setLabel('ActionLabel')
-            ->setSummary('ActionSummary');
-        return $this->preview;
+        $preview->Image = ['ActionImage'];
+        $preview->Title = ['ActionTitle'];
+        $preview->Label = ['ActionLabel'];
+        $preview->Summary = ['ActionSummary'];
+        $this->preview = $preview;
+        return $preview;
     }
 
-    /**
-     * Return image from current object if available
-     * or fall back the sitetree image.
-     * @return Image
-     */
-    public function getImage()
+    public function __get($name)
     {
-        if ($this->Preview->Image) {
-            return $this->Preview->Image;
+        if ($this->Preview->{$name}) {
+            return $this->Preview->{$name};
         }
-        $image = null;
-        $this->extend('updateImage', $image);
-        return $image;
+        $value = parent::__get($name);
+        $this->extend('update' . $name, $value);
+        return $value;
     }
 
     /**
@@ -158,52 +154,7 @@ class Action extends Link
      */
     public function Image()
     {
-        return $this->getImage();
-    }
-
-    /**
-     * Return title from current object if available
-     * or fall back the sitetree title.
-     * @return String
-     */
-    public function getTitle()
-    {
-        if ($this->Preview->Title) {
-            return $this->Preview->Title;
-        }
-        $title = null;
-        $this->extend('updateTitle', $title);
-        return $title;
-    }
-
-    /**
-     * Return summary from current object if available
-     * or fall back the sitetree summary.
-     * @return String
-     */
-    public function getSummary()
-    {
-        if ($this->Preview->Summary) {
-            return $this->Preview->Summary;
-        }
-        $summary = null;
-        $this->extend('updateSummary', $summary);
-        return $summary;
-    }
-
-    /**
-     * Return label from current object if available
-     * or fall back the sitetree label.
-     * @return String
-     */
-    public function getLabel()
-    {
-        if ($this->Preview->Label) {
-            return $this->Preview->Label;
-        }
-        $label = null;
-        $this->extend('updateLabel', $label);
-        return $label;
+        return $this->Image;
     }
 
     /**

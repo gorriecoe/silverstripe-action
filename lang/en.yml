@@ -1,0 +1,10 @@
+en:
+  gorriecoe\Action\Models\Action:
+    IMAGE: Image
+    LABEL: Label
+    PLURALNAME: Actions
+    PLURALS:
+      one: 'An Action'
+      other: '{count} Actions'
+    SINGULARNAME: Action
+    SUMMARY: Summary
