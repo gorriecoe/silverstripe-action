@@ -118,7 +118,7 @@ class Action extends Link
         if ($preview) {
             return $preview;
         }
-        $type = $this->Type;
+        $type = $this->getField('Type');
         if ($this->getRelationType($type) == 'has_one' && $component = $this->getComponent($type)) {
             if ($component->exists() && $component->hasMethod('getPreview')) {
                 $preview = $component->Preview;
@@ -138,14 +138,19 @@ class Action extends Link
         return $preview;
     }
 
-    public function __get($name)
+    /**
+     * Return image from current object if available
+     * or fall back the sitetree image.
+     * @return Image
+     */
+    public function getImage()
     {
-        if ($this->Preview->{$name}) {
-            return $this->Preview->{$name};
+        if ($this->Preview->Image) {
+            return $this->Preview->Image;
         }
-        $value = parent::__get($name);
-        $this->extend('update' . $name, $value);
-        return $value;
+        $image = null;
+        $this->extend('updateImage', $image);
+        return $image;
     }
 
     /**
@@ -154,7 +159,52 @@ class Action extends Link
      */
     public function Image()
     {
-        return $this->Image;
+        return $this->getImage();
+    }
+
+    /**
+     * Return title from current object if available
+     * or fall back the sitetree title.
+     * @return String
+     */
+    public function getTitle()
+    {
+        if ($this->Preview->Title) {
+            return $this->Preview->Title;
+        }
+        $title = null;
+        $this->extend('updateTitle', $title);
+        return $title;
+    }
+
+    /**
+     * Return summary from current object if available
+     * or fall back the sitetree summary.
+     * @return String
+     */
+    public function getSummary()
+    {
+        if ($this->Preview->Summary) {
+            return $this->Preview->Summary;
+        }
+        $summary = null;
+        $this->extend('updateSummary', $summary);
+        return $summary;
+    }
+
+    /**
+     * Return label from current object if available
+     * or fall back the sitetree label.
+     * @return String
+     */
+    public function getLabel()
+    {
+        if ($this->Preview->Label) {
+            return $this->Preview->Label;
+        }
+        $label = null;
+        $this->extend('updateLabel', $label);
+        return $label;
     }
 
     /**
