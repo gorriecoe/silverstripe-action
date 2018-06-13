@@ -122,7 +122,7 @@ class Action extends Link
         if ($this->getRelationType($type) == 'has_one' && $component = $this->getComponent($type)) {
             if ($component->exists() && $component->hasMethod('getPreview')) {
                 $preview = $component->Preview;
-                $preview->Owner = $this;
+                $preview->InRelationTo = $this;
             } else {
                 $preview = Preview::create($this);
             }
