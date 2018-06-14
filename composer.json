@@ -1,6 +1,6 @@
 {
   "name": "gorriecoe/silverstripe-action",
-  "description": "Adds basic call to action modals.",
+  "description": "Adds basic call to action DataObject.",
   "type": "silverstripe-vendormodule",
   "license": "BSD-3-Clause",
   "authors": [

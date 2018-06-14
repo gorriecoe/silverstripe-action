@@ -1,5 +1,5 @@
 # Silverstripe action
-Adds basic call to action modal.
+Adds basic call to action DataObject.
 
 ## Installation
 Composer is the recommended way of installing SilverStripe modules.
