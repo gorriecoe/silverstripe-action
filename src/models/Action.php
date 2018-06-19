@@ -41,7 +41,7 @@ class Action extends Link
      */
     private static $db = [
         'ActionTitle' => 'Text',
-        'ActionSummary' => 'Text',
+        'ActionContent' => 'Text',
         'ActionLabel' => 'Varchar(255)'
     ];
 
@@ -98,8 +98,8 @@ class Action extends Link
                 )
                 ->setAllowedExtensions(['jpg','png','gif']),
                 TextareaField::create(
-                    'ActionSummary',
-                    _t(__CLASS__ . '.SUMMARY', 'Summary')
+                    'ActionContent',
+                    _t(__CLASS__ . '.CONTENT', 'Content')
                 )
                 ->setRows(4),
                 TextField::create(
@@ -178,18 +178,18 @@ class Action extends Link
     }
 
     /**
-     * Return summary from current object if available
+     * Return summary content from current object if available
      * or fall back the sitetree summary.
      * @return String
      */
-    public function getSummary()
+    public function getContent()
     {
-        if ($this->Preview->Summary) {
-            return $this->Preview->Summary;
+        if ($this->Preview->Content) {
+            return $this->Preview->Content;
         }
-        $summary = null;
-        $this->extend('updateSummary', $summary);
-        return $summary;
+        $content = null;
+        $this->extend('updateContent', $content);
+        return $content;
     }
 
     /**
