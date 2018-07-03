@@ -133,7 +133,7 @@ class Action extends Link
         $preview->Image = ['ActionImage'];
         $preview->Title = ['ActionTitle'];
         $preview->Label = ['ActionLabel'];
-        $preview->Summary = ['ActionSummary'];
+        $preview->Content = ['ActionContent'];
         $this->preview = $preview;
         return $preview;
     }
