@@ -8,6 +8,7 @@ use SilverStripe\Assets\Image;
 use SilverStripe\AssetAdmin\Forms\UploadField;
 use SilverStripe\Forms\TextareaField;
 use SilverStripe\Forms\TextField;
+use SilverStripe\Forms\LiteralField;
 use SilverStripe\CMS\Model\SiteTree;
 
 /**
@@ -108,6 +109,27 @@ class Action extends Link
                 )
             ]
         );
+
+        $type = $this->getField('Type');
+        if ($this->getRelationType($type) == 'has_one' && $component = $this->getComponent($type)) {
+            $fields->addFieldToTab(
+                'Root.Main',
+                LiteralField::create(
+                    'InheritMessage',
+                    '<p class="message warning">' .
+                    _t(
+                        __CLASS__ . '.INHERITMESSAGE',
+                        'Empty field\'s will inherit content from the "{title}" {type}',
+                        [
+                            'title' => $component->obj('Title'),
+                            'type' => $this->TypeLabel
+                        ]
+                    ) .
+                    '</p>'
+                ),
+                'ActionTitle'
+            );
+        }
 
         return $fields;
     }
