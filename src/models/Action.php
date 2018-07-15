@@ -119,7 +119,7 @@ class Action extends Link
                     '<p class="message warning">' .
                     _t(
                         __CLASS__ . '.INHERITMESSAGE',
-                        'Empty field\'s will inherit content from the "{title}" {type}',
+                        'Empty fields will inherit content from the "{title}" {type}',
                         [
                             'title' => $component->obj('Title'),
                             'type' => $this->TypeLabel
